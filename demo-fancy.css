@@ -9,8 +9,8 @@
     --color-gray-1: #697582;
     --color-gray-2: #747f8c;
     --color-gray-3: #8a95a2;    
-    --color-primary-1: #335cd6;
-    --color-primary-1-a: #316be2;    
+    --color-primary-1: #6c4786;
+    --color-primary-1-a: #6c4786;    
     --color-primary-light-1: #eaf0fd;
     --color-primary-light-1-a: #bccaf1;
     --color-primary-2: #7752e7;
@@ -35,7 +35,7 @@
     --box-shadow-block-strong: 0px 1px 1px 0px rgba(42, 54, 79, 0.05),0px 4px 12px 0px rgba(42, 54, 79, 0.05),0px 10px 20px 0px rgba(42, 54, 79, 0.05),0px 10px 38px 0px rgba(42, 54, 79, 0.12);
 }
 .dark-mode{
-    --color-primary-1: #5d86fe;
+    --color-primary-1: #6c4786;
     --color-primary-2: #a080ff;
     --color-primary-3: #dc5fff;
     --color-primary-4: #ff68cc;

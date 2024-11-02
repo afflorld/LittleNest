@@ -194,8 +194,8 @@ Primary use: Multipurpose Template
     --color-gray-light-6: #bbb;
     --color-dark-mode-gray-1: rgba(255,255,255, .7);
     --color-dark-mode-gray-2: rgba(255,255,255, .1275);
-    --color-primary-1: #4567ed;
-    --color-primary-1-a: #375ae3;    
+    --color-primary-1: #6c4786;
+    --color-primary-1-a: #6c4786;    
     --color-primary-light-1: #e3effe;
     --color-primary-light-1-a: #bcd1f1;
     --color-primary-2: #7752e7;
@@ -441,10 +441,10 @@ img:not([draggable]), embed, object, video{
 }
 .clearlinks a{
     text-decoration: none;
-    color: unset;
+    color: #725db5;
 }
 .clearlinks a:hover{
-    color: unset !important;
+    color: #725db5 !important;
 }
 .full-wrapper{
     margin: 0 var(--full-wrapper-margin-x);
@@ -4371,16 +4371,16 @@ a.logo:hover{
     opacity: 0.17;
 }
 .light-content{
-    color: #fff;
+    color: #745488;
 }
 .light-content a{
-    color: rgba(255,255,255, .8);
+    color:#745488;
 }
 .light-content a:hover{
-    color: #fff;
+    color: #745488;
 }
 .light-content .section-text{
-    color: #fff;
+    color: #745488;
 }
 .bg-dark-alpha:before,
 .bg-dark-alpha .YTPOverlay:before,
@@ -9661,7 +9661,7 @@ footer:not(.light-content) .text-gray a:hover{
 }
 .light-content .fw-menu li a{
     text-decoration: none;
-    color: rgba(255,255,255, 0.7);
+    color: #6c4786;
 }
 
 .fw-menu-large{
