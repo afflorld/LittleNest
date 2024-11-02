@@ -3497,7 +3497,9 @@ html:not(.mobile) .wow-p{
     transition: all 0.2s cubic-bezier(0.000, 0.000, 0.580, 1.000);
 }
 .nav-logo-wrap .logo img{
-    max-height: 100%;
+   
+    /* Ill leave it blank, just fow */
+
 }
 .nav-logo-wrap .logo:before,
 .nav-logo-wrap .logo:after{
