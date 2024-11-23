@@ -238,17 +238,18 @@ Primary use: Multipurpose Template
 :root{
     scroll-behavior: auto;
 }
+
+
 html{
     -ms-overflow-style: scrollbar;
 }
 body{
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;    
 }
 main{
-    overflow: clip;
+    oveflow-x:hidden !important;
 }
 iframe{
     border: none;
@@ -256,6 +257,8 @@ iframe{
 
 .map{
 
+
+    overflow-x:hidden;
     width: 27vw;
     height: 200px;
 
@@ -3543,7 +3546,7 @@ a.logo:hover{
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: stretch;
-    width: 100%;
+    width: 100vw;
     height: var(--menu-bar-height) !important;
     position: relative;
     top: 0;
