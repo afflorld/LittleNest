@@ -10650,6 +10650,13 @@ a.blog-item-more:hover{
     color: var(--color-gray-1);
     font-size: 14px;
 }
+
+@media (max-width: 991px;){
+
+
+    font-size: 10px;
+
+}
 .pr-list li{
     margin-bottom: 12px;
     padding: 0;
