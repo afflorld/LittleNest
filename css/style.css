@@ -253,6 +253,27 @@ main{
 iframe{
     border: none;
 }
+
+.map{
+
+    width: 27vw;
+    height: 200px;
+
+}
+
+@media (max-width:991px){
+
+    .map{
+
+
+        width: 77vw;
+
+
+    }
+
+}
+
+
 a, b, div, ul, li{
     -webkit-tap-highlight-color: rgba(0,0,0,0); 
     -webkit-tap-highlight-color: transparent; 
