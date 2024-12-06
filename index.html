@@ -388,7 +388,7 @@ You can find the code of your language here - https://www.w3schools.com/tags/ref
                         <div class="row mb-50 mb-sm-30">                            
                             <div class="col-md-8 offset-md-2 text-center">
                                 <h2 class="section-caption-fancy mb-20 mb-xs-10">Cenník</h2>
-                                <h3 class="section-title mb-0">Text</h3>
+                                <h3 class="section-title mb-0"></h3>
                             </div>                            
                         </div>
                         
@@ -504,7 +504,7 @@ You can find the code of your language here - https://www.w3schools.com/tags/ref
                                                     <div class="pricing-item-inner round">
                                                         <div class="pricing-wrap">
                                                             <h4 class="pricing-title">
-                                                                Kutik bez strazenia
+                                                                Kutik bez stráženia
                                                             </h4>
                                                             
                                                             <div class="pricing-num">
@@ -676,10 +676,91 @@ You can find the code of your language here - https://www.w3schools.com/tags/ref
                 <!-- Divider -->
                 <hr class="mt-0 mb-0"/>
                 <!-- End Divider -->
-         
-                
+
+
+                <section class="page-section" id="contact" style="display:grid;justify-items:center;">
+                        <h2 class="section-caption-fancy  mb-xs-10" style="position:absolute;top:5%;">Kontakt</h2>
+
+                    <div class="container position-relative wow fadeInUp"  data-wow-delay="0"> 
+                            <!-- Right Column -->
+
+                            <div style="display:grid; justify-content: center; ">
+                                <div class="position-relative">
+                                    
+                                    <div class="box-shadow round p-4 p-sm-5">
+                                        
+                                        <h4 class="h3 mb-30">Kontaktujte nás</h4>
+                                        
+                                        <!-- Contact Form -->
+                                        <form class="form contact-form" id="contact_form">
+                                            
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    
+                                                    <!-- Name -->
+                                                    <div class="form-group">
+                                                        <label for="name">Meno a priezvisko</label>
+                                                        <input type="text" name="name" id="name" class="input-lg round form-control" placeholder="Vaše meno a priezvisko" pattern=".{3,100}" required aria-required="true">
+                                                    </div>
+                                                    <!-- End Name -->
+                                                    
+                                                </div>
+                                                
+                                                <div class="col-md-6">
+                                                    
+                                                    <!-- Email -->
+                                                    <div class="form-group">
+                                                        <label for="email">Email</label>
+                                                        <input type="email" name="email" id="email" class="input-lg round form-control" placeholder="Váš email" pattern=".{5,100}" required aria-required="true">
+                                                    </div>
+                                                    <!-- End Email -->
+                                                    
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Message -->
+                                            <div class="form-group">
+                                                <label for="message">Sprása</label>
+                                                <textarea name="message" id="message" class="input-lg round form-control" style="height: 130px;" placeholder="Napíšte nám, čo potrebujete"></textarea>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-md-6 col-xl-5">
+                                                    
+                                                    <!-- Send Button -->
+                                                    <div class="pt-3">
+                                                        <button class="submit_btn btn btn-mod btn-color btn-large btn-round btn-hover-anim" id="submit_btn" aria-controls="result">
+                                                            <span>Odoslať správu</span>
+                                                        </button>
+                                                    </div>
+                                                    <!-- End Send Button -->
+                                                                                                                                             
+                                                </div>
+                                                
+                          
+                                            </div>
+                                           
+                                           <div id="result" role="region" aria-live="polite" aria-atomic="true"></div>
+                                           
+                                        </form>
+                                        <!-- End Contact Form -->
+                                        
+                                    </div>
+                                    
+                            </div>    
+                            <!-- End Right Column -->
+                            
+                    
+                    </div>
+                </section>
+
+                <!-- Divider -->
+                    <hr class="mt-0 mb-0"/> 
+                <!-- End Divider -->
            </main>
-            
+           
+
+
             <!-- Footer -->
             <footer class="page-section footer light-content pb-30" style="background-color: rgba( 245,	203,	204, 0.4);">
                 <div class="container" style="color: #6c4786;">
