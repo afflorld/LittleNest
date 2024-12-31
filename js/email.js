@@ -11,7 +11,7 @@ function sendMail(){
     };
 
     if(parms.name=="" || parms.email=="" || parms.message==""){
-        alert("Vyplnte vsetky udaje!");
+        alert("Vyplňte všetky údaje!");
         return;
     }else{
         emailjs.send("service_aqrklk3","template_8jp5xrn",parms).then(alert("Ďakujeme za vašu rezerváciu!"));
