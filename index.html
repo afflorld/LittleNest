@@ -28,7 +28,9 @@ You can find the code of your language here - https://www.w3schools.com/tags/ref
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
     
     </head>
     <body class="appear-animate" >
@@ -678,6 +680,36 @@ You can find the code of your language here - https://www.w3schools.com/tags/ref
                 <!-- End Divider -->
 
 
+                <script>
+
+                    const form = document.getElementById('contact_form');
+                    const smtp = window.Email.send;
+                    
+
+
+                    function email() {
+
+                        const name = document.getElementById('name').value;
+                        const fromEmail; = document.getElementById('email').value;
+                        string message = document.getEleemntById('message').value;
+
+                        Email.send({
+                            Host : "smtp.mailgun.org",
+                            Username : "brad@sandbox512c7bebff50417cb81daaa5737fbd47.mailgun.org",
+                            Password : "67de1c767b2e2770bc52f5f385ba1da6-78f6ccbe-d8255fa4",
+                            To : 'littlenestweb@gmail.com',
+                            From : email,
+                            Subject : "Rezervacia",
+                            Body : message,
+                        }).then(
+                            message => alert(message)
+                        );
+
+                        }
+                 
+                </script>
+
+
                 <section class="page-section" id="contact" style="display:grid;justify-items:center;">
 
                         <div class="row -mt-80  mb-50 mb-sm-30">                            
@@ -737,7 +769,7 @@ You can find the code of your language here - https://www.w3schools.com/tags/ref
                                                     <!-- Send Button -->
                                                     <div class="pt-3">
                                                         <button class="submit_btn btn btn-mod btn-color btn-large btn-round btn-hover-anim" id="submit_btn" aria-controls="result">
-                                                            <span>Odoslať správu</span>
+                                                            <span onclick="email()">Odoslať správu</span>
                                                         </button>
                                                     </div>
                                                     <!-- End Send Button -->
@@ -896,6 +928,21 @@ You can find the code of your language here - https://www.w3schools.com/tags/ref
         <script src="js/jquery.ajaxchimp.min.js"></script>             
         <script src="js/contact-form.js"></script>        
         <script src="js/all.js"></script> 
+        <scirpt src="js/contact.js"></script>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <script>
+        Email.send({
+    Host : "smtp.mailendo.com",
+    Username : "username",
+    Password : "password",
+    To : 'them@website.com',
+    From : "you@isp.com",
+    Subject : "This is the subject",
+    Body : "And this is the body"
+}).then(
+  message => alert(message)
+);
+        </script>
         <!-- End JS -->       
         
     </body>
