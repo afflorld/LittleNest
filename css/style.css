@@ -9605,8 +9605,7 @@ footer:not(.light-content) .text-gray a:hover{
     color: var(--color-gray-light-3);
 }
 .footer.light-content a:hover{
-    color: #fff !important;
-    text-decoration: none;    
+    text-decoration: underline;    
 }
 .footer-made{
     font-size: 14px;
