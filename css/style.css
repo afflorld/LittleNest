@@ -481,7 +481,7 @@ img:not([draggable]), embed, object, video{
 .g-0, .g-1, .g-2, .g-3, .g-4, .g-5,
 .gx-0, .gx-1, .gx-2, .gx-3, .gx-4, .gx-5,
 .gy-0, .gy-1, .gy-2, .gy-3, .gy-4, .gy-5){
-    --bs-gutter-x: 30px;
+    --bs-gutter-x: 27px;
 }
 .row.gx-huge{
     --bs-gutter-x: 276px;
