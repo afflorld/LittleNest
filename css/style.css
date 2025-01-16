@@ -9664,6 +9664,36 @@ footer:not(.light-content) .text-gray a:hover{
     transform: none;
 }
 
+.fw-flex{
+
+
+    display: inline-flex;
+
+}
+
+.fw-onchange{
+
+    margin-top: 0px;
+}
+
+@media only screen and (max-width: 600px) {
+   
+    .fw-onchange{
+    
+        margin-top: 20px;
+
+    }
+
+    .fw-flex{
+        
+        display: flex;
+        flex-direction:column;
+
+    }
+
+}
+
+
 .fw-title{
     margin-bottom: 16px;
     font-size: 18px;
