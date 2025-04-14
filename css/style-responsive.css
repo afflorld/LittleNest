@@ -770,16 +770,12 @@
         border-radius: calc(var(--border-radius-default) - 5px);
     }
     
+
+
     .composition-7{
         margin-top: -30px;
     }
-    .composition-7-image-1,
-    .composition-7-image-2,
-    .composition-7-image-3,
-    .composition-7-image-4{
-        width: 46.5%;
-        margin-top: 30px;
-    }
+   
     .testimonials-6-icon{
         font-size: 7em;
     }
@@ -830,6 +826,59 @@
     .contact-2-text{
         font-size: 16px;
     }
+
+    .mobile-resize{
+
+         display:grid;
+         justify-items:center;
+    }
+
+    .composition-2{
+
+         overflow: visible;
+
+    }
+
+    .composition-1,
+    .composition-2,
+    .composition-3,
+    .composition-4{
+
+         width: 60% !important;
+         height: 20% !important;
+
+    }
+
+    .composition-2-decoration{
+
+         width: 33% !important;
+         margin-left: -15.8902% !important;
+         margin-bottom: 4.802% !important;
+    }
+
+     .composition-1-image-2 img,
+     .composition-2-image-2 img,
+     .composition-3-image-2 img,
+     .composition-4-image-2 img{
+          width: 300px;
+          height: 140px; 
+     }
+
+     .composition-2-image-2{
+
+
+          margin-top: -30%;
+
+     }
+
+    .composition-7-image-1,
+    .composition-7-image-2,
+    .composition-7-image-3,
+    .composition-7-image-4{
+        width: 46.5%;
+        margin-top: 30px;
+    }
+
      
 }
     
@@ -1004,6 +1053,29 @@
         margin-bottom: 37px;
         font-size: 18px;
     }
+
+     .composition-1-image-2 img,
+     .composition-2-image-2 img,
+     .composition-3-image-2 img,
+     .composition-4-image-2 img{
+          width: 300px;
+          height: 120px; 
+     }
+}
+
+/* ==============================
+   Max Width 384
+   ============================== */
+
+@media only screen and (max-width: 384px){
+
+     .composition-1-image-2 img,
+     .composition-2-image-2 img,
+     .composition-3-image-2 img,
+     .composition-4-image-2 img{
+          width: 200px;
+          height: 80px; 
+
 }
 
 

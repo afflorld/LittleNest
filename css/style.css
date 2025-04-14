@@ -8463,6 +8463,20 @@ a.portfolio-5-link:hover .portfolio-5-title span{
     border: 1px solid currentColor;
 }
 
+/*
+ * Image resize
+ */
+.composition-1-image-2 img,
+.composition-2-image-2 img,
+.composition-3-image-2 img,
+.composition-4-image-2 img{
+
+     width: 480px;
+     height: 162px;
+     object-fit: cover;
+     object-position: center;
+
+}
 
 /* ==============================
    Work process
