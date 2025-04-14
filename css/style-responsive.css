@@ -1064,6 +1064,21 @@
 }
 
 /* ==============================
+   Max Width 404
+   ============================== */
+
+@media only screen and (max-width: 404px){
+
+     .composition-1-image-2 img,
+     .composition-2-image-2 img,
+     .composition-3-image-2 img,
+     .composition-4-image-2 img{
+          width: 270px;
+          height: 90px; 
+
+}
+
+/* ==============================
    Max Width 384
    ============================== */
 
@@ -1073,7 +1088,7 @@
      .composition-2-image-2 img,
      .composition-3-image-2 img,
      .composition-4-image-2 img{
-          width: 200px;
+          width: 245px;
           height: 80px; 
 
 }
