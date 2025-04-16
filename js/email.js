@@ -5,17 +5,15 @@ document.getElementById('contact_form').addEventListener('submit', function(e) {
   const submitBtn = document.getElementById('submit_btn');
   const resultDiv = document.getElementById('result');
   
-  // Show loading state
   submitBtn.disabled = true;
   submitBtn.innerHTML = '<span>Odosielanie...</span>';
   
-  // Get form data
   const formData = new FormData(form);
   
-  // Send POST request
   fetch(form.action, {
-    method: 'POST',
-    body: new URLSearchParams(formData)
+     method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData)
   })
   .then(response => response.json())
   .then(data => {
