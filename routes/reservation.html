@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+     <head>
+          <title>Restaurant Reservation System</title>
+          <link rel="stylesheet" href="css/bootstrap.min.css">
+          <link rel="stylesheet" href="css/style.css">
+          <link rel="stylesheet" href="css/style-responsive.css">
+          <link rel="stylesheet" href="css/vertical-rhythm.min.css">
+          <link rel="stylesheet" href="css/magnific-popup.css">
+          <link rel="stylesheet" href="css/owl.carousel.css">
+          <link rel="stylesheet" href="css/splitting.css">
+          <link rel="stylesheet" href="css/demo-fancy/demo-fancy.css">
+
+          <style>
+/* Modern Pink Theme */
+:root {
+     --primary-pink: #e75480;
+     --light-pink: #ffb6c1;
+     --dark-pink: #b3446c;
+     --available: #d4edda;
+     --booked: #f8d7da;
+     --selected: #e75480;
+}
+
+        .container.position-relative {
+             max-width: 900px;
+             width: 70%;
+             min-width: 50%;
+             padding: 0 15px;
+             margin: 0 auto;
+        }
+
+        .time-slots-container {
+             margin: 20px 0;
+             padding: 15px;
+             background: white;
+             border-radius: 10px;
+             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+             overflow-x: auto;
+        }
+
+        .time-slots {
+             display: grid;
+             grid-template-columns: 80px repeat(5, 1fr);
+             gap: 6px;
+             margin-top: 15px;
+             min-width: 700px;
+        }
+
+        .time-header {
+             background: var(--primary-pink);
+             color: white;
+             padding: 8px;
+             text-align: center;
+             font-weight: bold;
+             border-radius: 4px;
+             font-size: 14px;
+        }
+
+        .table-header {
+             background: var(--primary-pink);
+             color: white;
+             padding: 8px;
+             text-align: center;
+             font-weight: bold;
+             border-radius: 4px;
+             font-size: 14px;
+        }
+
+        .time-label {
+             background: #f3f3f3;
+             padding: 8px;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             font-weight: bold;
+             border-radius: 4px;
+             font-size: 10.5px;
+        }
+
+        .time-slot {
+             padding: 8px;
+             text-align: center;
+             border-radius: 4px;
+             cursor: pointer;
+             transition: all 0.2s;
+             font-size: 14px;
+             min-height: 40px;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+        }
+
+        .available {
+             background: var(--available);
+             color: #155724;
+        }
+
+        .available:hover {
+             background: #c3e6cb;
+        }
+
+        .booked {
+             background: var(--booked);
+             color: #721c24;
+             cursor: not-allowed;
+        }
+
+        .selected {
+             background: var(--selected);
+             color: white;
+             font-weight: bold;
+        }
+
+        .form-control {
+             height: 45px;
+             font-size: 15px;
+        }
+
+        input[type="date"].form-control {
+             height: 45px;
+        }
+
+        @media (max-width: 768px) {
+             .container.position-relative {
+                  width: 95%;
+                  min-width: 95%;
+             }
+             .time-slots {
+                  min-width: 100%;
+             }
+        }
+          </style>
+     </head>
+     <body class="bg-gradient-gray-light-1" style="height: 100%;">
+          <section class="page-section bg-scroll" style="display:grid;justify-items:center;">
+               <div class="container position-relative wow fadeInUp" data-wow-delay="0"> 
+                    <div style="display:grid; justify-content: center;">
+                         <div class="position-relative bg-white">
+                              <div class="box-shadow round p-4 p-sm-5">
+                                   <h4 class="h3 mb-30">Rezervácia</h4>
+                                   <form id="reservationForm">
+                                        <div class="row">
+                                             <div class="col-md-6">
+                                                  <div class="form-group">
+                                                       <label for="name">Meno a priezvisko</label>
+                                                       <input type="text" name="name" id="name" class="form-control input-lg round" placeholder="Vaše meno a priezvisko" required>
+                                                  </div>
+                                                  <div class="form-group">
+                                                       <label for="email">Email</label>
+                                                       <input type="email" name="email" id="email" class="form-control input-lg round" placeholder="Váš email" required>
+                                                  </div>
+                                             </div>
+
+                                             <div class="col-md-6">
+                                                  <div class="form-group">
+                                                       <label for="phone">Telefón</label>
+                                                       <input type="tel" name="phone" id="phone" class="form-control input-lg round" placeholder="Váš telefón" required>
+                                                  </div>
+                                                  <div class="form-group">
+                                                       <label for="persons">Počet osôb</label>
+                                                       <input type="number" name="persons" id="persons" class="form-control input-lg round" min="1" max="3" required>
+                                                  </div>
+                                             </div>
+                                        </div>
+
+                                        <div class="form-group" style="display:grid;">
+                                             <label for="date" style="justify-self:center">Dátum</label>
+                                             <input type="date" name="date" id="date" class="form-control input-lg round" required>
+                                        </div>
+
+                                        <div class="time-slots-container">
+                                             <h5 class="text-center mb-3">Dostupné časy</h5>
+                                             <div class="time-slots" id="timeSlots">
+                                                  <!-- Header row -->
+                                                  <div class="time-header">Čas</div>
+                                                  <div class="table-header">Stôl 1</div>
+                                                  <div class="table-header">Stôl 2</div>
+                                                  <div class="table-header">Stôl 3</div>
+                                                  <div class="table-header">Stôl 4</div>
+                                                  <div class="table-header">Stôl 5</div>
+                                                  <!-- Time slots will be added here by JavaScript -->
+                                             </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+                                             <div class="col-md-6">
+                                                  <div class="form-group">
+                                                       <label for="startHour">Začiatok rezervácie</label>
+                                                       <input type="text" name="startHour" id="startHour" class="form-control input-lg round" readonly>
+                                                  </div>
+                                             </div>
+                                             <div class="col-md-6">
+                                                  <div class="form-group">
+                                                       <label for="howlong">Trvanie (hodiny)</label>
+                                                       <input type="number" name="howlong" id="howlong" class="form-control input-lg round" min="1" max="8" value="1" readonly>
+                                                  </div>
+                                             </div>
+                                             <div>
+                                                  <div class="form-group">
+                                                       <label for="table">Vybraný stôl</label>
+                                                       <input type="text" name="table" id="table" class="form-control input-lg round" readonly>
+                                                  </div>
+                                             </div>
+                                        </div>
+
+                                        <div class="row">
+                                             <div class="col-md-12 text-center">
+                                                  <div class="pt-3">
+                                                       <button type="submit" class="submit_btn btn btn-mod btn-color btn-large btn-round btn-hover-anim" id="submit_btn">
+                                                            <span>Odoslať rezerváciu</span>
+                                                       </button>
+                                                  </div>                                                
+                                             </div>
+                                        </div>
+                                        <div id="response" class="pt-3" role="region" aria-live="polite" aria-atomic="true"></div>
+                                   </form>
+                              </div>
+                         </div>    
+                    </div>
+               </div>
+          </section>
+
+          <script>
+               document.addEventListener('DOMContentLoaded', function() {
+                    const dateInput = document.getElementById('date');
+                    const timeSlots = document.getElementById('timeSlots');
+                    const startHourInput = document.getElementById('startHour');
+                    const howlongInput = document.getElementById('howlong');
+                    const tableInput = document.getElementById('table');
+                    const chairsInput = document.getElementById('persons');
+
+                    let selectedTable = null;
+                    let selectedHours = [];
+                    let isSelectingRange = false;
+
+                    dateInput.addEventListener('change', async function() {
+                         const date = this.value;
+                         if (!date) return;
+
+                         // Clear existing time slots (keep headers)
+                         while (timeSlots.children.length > 6) {
+                              timeSlots.removeChild(timeSlots.lastChild);
+                         }
+
+                         selectedTable = null;
+                         selectedHours = [];
+                         startHourInput.value = '';
+                         howlongInput.value = '1';
+                         tableInput.value = '';
+
+                         // Fetch booked slots from server
+                         try {
+                              const response = await fetch(`https://script.google.com/macros/s/AKfycbz6WE828qWWfQYeH9uRjbXGZJ8mWEzR8RbGfvjjNcJrd531-vFwS1eVjpDT2KC-RlTK/exec?date=${date}`);
+                              const data = await response.json();
+
+                              if (data.success) {
+                                   renderTimeSlots(date, data.bookedSlots);
+                              } else {
+                                   console.error('Error fetching booked slots:', data.message);
+                                   renderTimeSlots(date, {});
+                              }
+                         } catch (error) {
+                              console.error('Error:', error);
+                              renderTimeSlots(date, {});
+                         }
+                    });
+
+                    function renderTimeSlots(date, bookedSlots) {
+                         // Clear existing time slots (keep headers)
+                         while (timeSlots.children.length > 6) {
+                              timeSlots.removeChild(timeSlots.lastChild);
+                         }
+
+                         // Create time slots (9AM to 5PM)
+                         for (let hour = 9; hour < 18; hour++) {
+                              // Add time label
+                              const timeLabel = document.createElement('div');
+                              timeLabel.className = 'time-label';
+                              timeLabel.textContent = `${hour}:00 - ${hour + 1}:00`;
+                              timeSlots.appendChild(timeLabel);
+
+                              // Add time slots for each table
+                              for (let table = 1; table <= 5; table++) {
+                                   const timeSlot = document.createElement('div');
+                                   timeSlot.className = 'time-slot';
+                                   timeSlot.dataset.hour = hour;
+                                   timeSlot.dataset.table = table;
+
+                                   // Check if this slot is booked
+                                   const isBooked = bookedSlots[table] && bookedSlots[table].includes(hour);
+
+                                   if (isBooked) {
+                                        timeSlot.classList.add('booked');
+                                        timeSlot.textContent = '✗';
+                                        timeSlot.title = 'Tento čas je už obsadený';
+                                        timeSlot.style.cursor = 'not-allowed';
+                                   } else {
+                                        timeSlot.classList.add('available');
+                                        timeSlot.textContent = '✔';
+                                        timeSlot.title = 'Kliknite pre rezerváciu';
+                                        timeSlot.style.cursor = 'pointer';
+                                        timeSlot.addEventListener('click', function() {
+                                             handleTimeSlotClick(this, hour, table);
+                                        });
+                                   }
+
+                                   timeSlots.appendChild(timeSlot);
+                              }
+                         }
+                    }
+                    function handleTimeSlotClick(element, hour, table) {
+                         // If no table selected or different table clicked
+                         if (selectedTable === null || selectedTable !== table) {
+                              // Clear previous selection
+                              document.querySelectorAll('.time-slot.selected').forEach(slot => {
+                                   slot.classList.remove('selected');
+                              });
+
+                              selectedTable = table;
+                              selectedHours = [hour];
+                              isSelectingRange = true;
+                              element.classList.add('selected');
+                              tableInput.value = `Stôl ${table}`;
+                              startHourInput.value = `${hour}:00`;
+                              howlongInput.value = '1';
+                         } 
+                         // If same table clicked
+                         else if (selectedTable === table) {
+                              if (isSelectingRange) {
+                                   // Select range
+                                   const startHour = selectedHours[0];
+                                   const endHour = hour;
+
+                                   // Clear previous selection
+                                   document.querySelectorAll('.time-slot.selected').forEach(slot => {
+                                        slot.classList.remove('selected');
+                                   });
+
+                                   // Select range
+                                   const minHour = Math.min(startHour, endHour);
+                                   const maxHour = Math.max(startHour, endHour);
+                                   selectedHours = [];
+
+                                   for (let h = minHour; h <= maxHour; h++) {
+                                        const slot = document.querySelector(`.time-slot[data-hour="${h}"][data-table="${table}"]`);
+                                        if (slot && !slot.classList.contains('booked')) {
+                                             slot.classList.add('selected');
+                                             selectedHours.push(h);
+                                        }
+                                   }
+
+                                   // Update form fields
+                                   if (selectedHours.length > 0) {
+                                        startHourInput.value = `${minHour}:00`;
+                                        howlongInput.value = maxHour - minHour + 1;
+                                        isSelectingRange = false;
+                                   } else {
+                                        selectedTable = null;
+                                        tableInput.value = '';
+                                        startHourInput.value = '';
+                                        howlongInput.value = '1';
+                                   }
+                              } else {
+                                   // Start new selection
+                                   selectedHours = [hour];
+                                   isSelectingRange = true;
+                                   document.querySelectorAll('.time-slot.selected').forEach(slot => {
+                                        slot.classList.remove('selected');
+                                   });
+                                   element.classList.add('selected');
+                                   startHourInput.value = `${hour}:00`;
+                                   howlongInput.value = '1';
+                              }
+                         }
+                    }
+
+                    document.getElementById('reservationForm').addEventListener('submit', async (e) => {
+                         e.preventDefault();
+
+                         const responseDiv = document.getElementById('response');
+                         responseDiv.textContent = "Spracovávam...";
+                         responseDiv.style.color = "black";
+
+                         if (!selectedTable || selectedHours.length === 0) {
+                              responseDiv.textContent = "Prosím vyberte stôl a časový rozsah";
+                              responseDiv.style.color = "red";
+                              return;
+                         }
+
+                         try {
+                              const name = encodeURIComponent(document.getElementById('name').value);
+                              const email = encodeURIComponent(document.getElementById('email').value);
+                              const phone = encodeURIComponent(document.getElementById('phone').value);
+                              const persons = encodeURIComponent(document.getElementById('persons').value);
+                              const date = encodeURIComponent(document.getElementById('date').value);
+                              const table = encodeURIComponent(selectedTable);
+                              const startHour = encodeURIComponent(startHourInput.value);
+                              const howlong = encodeURIComponent(howlongInput.value);
+                              const chairs = encodeURIComponent(chairsInput.value);
+                              // Use your existing doGet endpoint
+                              const scriptUrl = 'https://script.google.com/macros/s/AKfycbxug1tCQjOo8CLz4r1075JUbxbZPPG9j6AXI_N-_98ju9gfI4XBQiARSTkJ1-n17xbi/exec';
+                              const url = `${scriptUrl}?name=${name}&date=${date}&startHour=${startHour}&howlong=${howlong}&table=${table}&chairs=${chairs}&persons=${persons}`;
+
+                              const response = await fetch(url);
+                              const result = await response.json();
+
+                              if (result.success) {
+                                   responseDiv.textContent = result.message || "Rezervácia úspešná!";
+                                   responseDiv.style.color = "green";
+                                   document.getElementById('reservationForm');
+                                   document.querySelectorAll('.time-slot.selected').forEach(slot => {
+                                        slot.classList.remove('selected');
+                                   });
+                                   selectedTable = null;
+                                   selectedHours = [];
+                                   // Refresh the time slots to show the new booking
+                                   dateInput.dispatchEvent(new Event('change'));
+                              } else {
+                                   responseDiv.textContent = result.message || "Chyba pri odosielaní rezervácie";
+                                   responseDiv.style.color = "red";
+
+                                   if (result.conflicts) {
+                                        // Highlight conflicting slots
+                                        document.querySelectorAll('.time-slot').forEach(slot => {
+                                             const slotHour = parseInt(slot.dataset.hour);
+                                             const slotTable = parseInt(slot.dataset.table);
+
+                                             if (slotTable === selectedTable) {
+                                                  const conflictStart = parseInt(result.conflicts.startHour);
+                                                  const conflictEnd = parseInt(result.conflicts.endHour.split(':')[0]);
+                                                  if (slotHour >= conflictStart && slotHour < conflictEnd) {
+                                                       slot.classList.add('booked');
+                                                       slot.textContent = '✗';
+                                                       slot.title = 'Tento čas je už obsadený';
+                                                  }
+                                             }
+                                        });
+                                   }
+                              }
+                         } catch (error) {
+                              console.error('Error:', error);
+                              responseDiv.textContent = `Chyba: ${error.message}`;
+                              responseDiv.style.color = "red";
+                         }
+                    });
+               });
+          </script>
+
+          <!-- JS -->
+          <script src="js/jquery.min.js"></script>
+          <script src="js/bootstrap.bundle.min.js"></script>
+          <script src="js/plugins.js"></script>
+          <script src="js/jquery.ajaxchimp.min.js"></script>             
+          <script src="js/all.js"></script>
+     </body>
+</html>
