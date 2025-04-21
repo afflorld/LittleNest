@@ -1,0 +1,117 @@
+:root {
+     --primary-pink: #e75480;
+     --light-pink: #ffb6c1;
+     --dark-pink: #b3446c;
+     --available: #d4edda;
+     --booked: #f8d7da;
+     --selected: #e75480;
+}
+
+.container.position-relative {
+     max-width: 900px;
+     width: 70%;
+     min-width: 50%;
+     padding: 0 15px;
+     margin: 0 auto;
+}
+
+.time-slots-container {
+     margin: 20px 0;
+     padding: 15px;
+     background: white;
+     border-radius: 10px;
+     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+     overflow-x: auto;
+}
+
+.time-slots {
+     display: grid;
+     grid-template-columns: 80px repeat(5, 1fr);
+     gap: 6px;
+     margin-top: 15px;
+     min-width: 700px;
+}
+
+.time-header {
+     background: var(--primary-pink);
+     color: white;
+     padding: 8px;
+     text-align: center;
+     font-weight: bold;
+     border-radius: 4px;
+     font-size: 14px;
+}
+
+.table-header {
+     background: var(--primary-pink);
+     color: white;
+     padding: 8px;
+     text-align: center;
+     font-weight: bold;
+     border-radius: 4px;
+     font-size: 14px;
+}
+
+.time-label {
+     background: #f3f3f3;
+     padding: 8px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-weight: bold;
+     border-radius: 4px;
+     font-size: 10.5px;
+}
+
+.time-slot {
+     padding: 8px;
+     text-align: center;
+     border-radius: 4px;
+     cursor: pointer;
+     transition: all 0.2s;
+     font-size: 14px;
+     min-height: 40px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
+.available {
+     background: var(--available);
+     color: #155724;
+}
+
+.available:hover {
+     background: #c3e6cb;
+}
+
+.booked {
+     background: var(--booked);
+     color: #721c24;
+     cursor: not-allowed;
+}
+
+.selected {
+     background: var(--selected);
+     color: white;
+     font-weight: bold;
+}
+
+.form-control {
+     height: 45px;
+     font-size: 15px;
+}
+
+input[type="date"].form-control {
+     height: 45px;
+}
+
+@media (max-width: 768px) {
+     .container.position-relative {
+          width: 95%;
+          min-width: 95%;
+     }
+     .time-slots {
+          min-width: 100%;
+     }
+}
