@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
      <head>
-          <title>Rezervácie</title>
+          <title>Rezervácia</title>
           <link rel="stylesheet" href="css/bootstrap.min.css">
           <link rel="stylesheet" href="css/style.css">
           <link rel="stylesheet" href="css/style-responsive.css">
@@ -10,9 +10,7 @@
           <link rel="stylesheet" href="css/owl.carousel.css">
           <link rel="stylesheet" href="css/splitting.css">
           <link rel="stylesheet" href="css/demo-fancy/demo-fancy.css">
-
           <link rel="stylesheet" href="css/reservation.css">
-
      </head>
      <body class="bg-gradient-gray-light-1" style="height: 100%;">
           <section class="page-section bg-scroll" style="display:grid;justify-items:center;">
@@ -54,14 +52,12 @@
                                         <div class="time-slots-container">
                                              <h5 class="text-center mb-3">Dostupné časy</h5>
                                              <div class="time-slots" id="timeSlots">
-                                                  <!-- Header row -->
                                                   <div class="time-header">Čas</div>
                                                   <div class="table-header">Stôl 1</div>
                                                   <div class="table-header">Stôl 2</div>
                                                   <div class="table-header">Stôl 3</div>
                                                   <div class="table-header">Stôl 4</div>
                                                   <div class="table-header">Stôl 5</div>
-                                                  <!-- Time slots will be added here by JavaScript -->
                                              </div>
                                         </div>
 
@@ -110,5 +106,90 @@
           <script src="js/plugins.js"></script>
           <script src="js/jquery.ajaxchimp.min.js"></script>             
           <script src="js/all.js"></script>
+
+
+          <script>
+
+               const dateInput = document.getElementById('date');
+
+               // --- 1. Define Holidays ---
+               function getSlovakHolidays(year) {
+                    const fixedHolidays = [
+                         `${year}-01-01`, // Nový rok
+                         `${year}-01-06`, // Traja králi
+                         `${year}-05-01`, // Sviatok práce
+                         `${year}-05-08`, // Deň víťazstva
+                         `${year}-07-05`, // Cyrila a Metoda
+                         `${year}-08-29`, // Výročie SNP
+                         `${year}-09-01`, // Deň Ústavy
+                         `${year}-09-15`, // Sedembolestná Panna Mária
+                         `${year}-11-01`, // Všetkých svätých
+                         `${year}-11-17`, // Deň boja za slobodu
+                         `${year}-12-24`, // Štedrý deň
+                         `${year}-12-25`, // 1. vianočný sviatok
+                         `${year}-12-26`, // 2. vianočný sviatok
+                    ];
+
+                    const a = year % 19;
+                    const b = Math.floor(year / 100);
+                    const c = year % 100;
+                    const d = Math.floor(b / 4);
+                    const e = b % 4;
+                    const f = Math.floor((b + 8) / 25);
+                    const g = Math.floor((b - f + 1) / 3);
+                    const h = (19 * a + b - d - g + 15) % 30;
+                    const i = Math.floor(c / 4);
+                    const k = c % 4;
+                    const l = (32 + 2 * e + 2 * i - h - k) % 7;
+                    const m = Math.floor((a + 11 * h + 22 * l) / 451);
+                    const month = Math.floor((h + l - 7 * m + 114) / 31);
+                    const day = ((h + l - 7 * m + 114) % 31) + 1;
+
+                    const easter = new Date(year, month - 1, day);
+                    const goodFriday = new Date(easter);
+                    goodFriday.setDate(easter.getDate() - 2); // Veľký piatk
+                    const easterMonday = new Date(easter);
+                    easterMonday.setDate(easter.getDate() + 1); // Veľkonočný pondelok
+
+                    const variableHolidays = [
+                         formatDate(goodFriday),
+                         formatDate(easterMonday),
+                    ];
+
+                    return [...fixedHolidays, ...variableHolidays];
+               }
+
+               function formatDate(date) {
+                    const d = new Date(date);
+                    const year = d.getFullYear();
+                    const month = String(d.getMonth() + 1).padStart(2, '0');
+                    const day = String(d.getDate()).padStart(2, '0');
+                    return `${year}-${month}-${day}`;
+               }
+
+               const today = new Date();
+               today.setHours(0, 0, 0, 0);
+               const threeWeeksLater = new Date();
+               threeWeeksLater.setDate(today.getDate() + 21);
+
+               dateInput.min = formatDate(today);
+               dateInput.max = formatDate(threeWeeksLater);
+
+               dateInput.addEventListener('change', function() {
+                    const selectedDate = new Date(this.value);
+                    const dayOfWeek = selectedDate.getDay();
+                    const holidays = getSlovakHolidays(selectedDate.getFullYear());
+
+                    if (dayOfWeek === 0 || dayOfWeek === 6) {
+                         alert("Vyberte si prosím pracovný deň (pondelok až piatok).");
+                         this.value = '';
+                    } else if (holidays.includes(formatDate(selectedDate))) {
+                         alert("Tento deň je štátny sviatok. Vyberte iný dátum.");
+                         this.value = '';
+                    }
+               });
+
+          </script>
+
      </body>
 </html>

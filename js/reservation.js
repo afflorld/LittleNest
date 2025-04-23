@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
                const howlong = encodeURIComponent(howlongInput.value);
                const chairs = encodeURIComponent(chairsInput.value);
                // Use your existing doGet endpoint
-               const scriptUrl = 'https://script.google.com/macros/s/AKfycbxug1tCQjOo8CLz4r1075JUbxbZPPG9j6AXI_N-_98ju9gfI4XBQiARSTkJ1-n17xbi/exec';
+               const scriptUrl = 'https://script.google.com/macros/s/AKfycbyHvHpLbw0QKDtOQJiykyzGmYlkDS41bqGhITWTZuyM03ac4Aj5hQarkfD6xifdP9rr/exec';
                const url = `${scriptUrl}?name=${name}&date=${date}&startHour=${startHour}&howlong=${howlong}&table=${table}&chairs=${chairs}&persons=${persons}`;
 
                const response = await fetch(url);
@@ -209,4 +209,3 @@ document.addEventListener('DOMContentLoaded', function() {
           }
      });
 });
-
