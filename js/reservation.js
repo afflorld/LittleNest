@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
      const dateInput = document.getElementById('date');
+     const phoneInput = document.getElementById('phone');
      const timeSlots = document.getElementById('timeSlots');
      const startHourInput = document.getElementById('startHour');
      const howlongInput = document.getElementById('howlong');
@@ -10,10 +11,17 @@ document.addEventListener('DOMContentLoaded', function() {
      let selectedHours = [];
      let isSelectingRange = false;
 
+     // Phone number validation
+     phoneInput.addEventListener('input', function() {
+          const phoneRegex = /^(\+421|0)[0-9]{9}$/;
+          this.classList.toggle('is-invalid', this.value && !phoneRegex.test(this.value));
+     });
+
      dateInput.addEventListener('change', async function() {
           const date = this.value;
           if (!date) return;
 
+          // Clear previous selection
           while (timeSlots.children.length > 6) {
                timeSlots.removeChild(timeSlots.lastChild);
           }
@@ -25,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
           tableInput.value = '';
 
           try {
-               const response = await fetch(`https://script.google.com/macros/s/AKfycbz6WE828qWWfQYeH9uRjbXGZJ8mWEzR8RbGfvjjNcJrd531-vFwS1eVjpDT2KC-RlTK/exec?date=${date}`);
+               const response = await fetch(`https://script.google.com/macros/s/AKfycbxMX8_vNqxUS_F2rzNn9c2SajZ4oc_2mzwTbKFHVrTD0H6Zhd-wGL9U5CYUkqHqaknX/exec?date=${date}`);
                const data = await response.json();
 
                if (data.success) {
@@ -79,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
                }
           }
      }
+
      function handleTimeSlotClick(element, hour, table) {
           if (selectedTable === null || selectedTable !== table) {
                document.querySelectorAll('.time-slot.selected').forEach(slot => {
@@ -143,27 +152,38 @@ document.addEventListener('DOMContentLoaded', function() {
           e.preventDefault();
 
           const responseDiv = document.getElementById('response');
-          responseDiv.textContent = "Spracovávam...";
-          responseDiv.style.color = "black";
+          
+          // Validate phone number
+          const phoneRegex = /^(\+421|0)[0-9]{9}$/;
+          if (!phoneRegex.test(phoneInput.value)) {
+               responseDiv.textContent = "Prosím zadajte platné slovenské telefónne číslo (formát: +421XXXXXXXXX alebo 0XXXXXXXXX)";
+               responseDiv.style.color = "red";
+               phoneInput.focus();
+               return;
+          }
 
+          // Validate time slot selection
           if (!selectedTable || selectedHours.length === 0) {
                responseDiv.textContent = "Prosím vyberte stôl a časový rozsah";
                responseDiv.style.color = "red";
                return;
           }
 
+          responseDiv.textContent = "Spracovávam...";
+          responseDiv.style.color = "black";
+
           try {
                const name = encodeURIComponent(document.getElementById('name').value);
                const email = encodeURIComponent(document.getElementById('email').value);
-               const phone = encodeURIComponent(document.getElementById('phone').value);
+               const phone = encodeURIComponent(phoneInput.value);
                const persons = encodeURIComponent(document.getElementById('persons').value);
                const date = encodeURIComponent(document.getElementById('date').value);
                const table = encodeURIComponent(selectedTable);
                const startHour = encodeURIComponent(startHourInput.value);
                const howlong = encodeURIComponent(howlongInput.value);
                const chairs = encodeURIComponent(chairsInput.value);
-               // Use your existing doGet endpoint
-               const scriptUrl = 'https://script.google.com/macros/s/AKfycbyHvHpLbw0QKDtOQJiykyzGmYlkDS41bqGhITWTZuyM03ac4Aj5hQarkfD6xifdP9rr/exec';
+               
+               const scriptUrl = 'https://script.google.com/macros/s/AKfycbxDZ-bi3FiVqSlavld9P7cmG2p3xgDXFqrIVbao89drw8vfzClx1LAKspp9EExgfyUv/exec';
                const url = `${scriptUrl}?name=${name}&date=${date}&startHour=${startHour}&howlong=${howlong}&table=${table}&chairs=${chairs}&persons=${persons}`;
 
                const response = await fetch(url);
@@ -172,13 +192,15 @@ document.addEventListener('DOMContentLoaded', function() {
                if (result.success) {
                     responseDiv.textContent = result.message || "Rezervácia úspešná!";
                     responseDiv.style.color = "green";
-                    document.getElementById('reservationForm');
+                    
+                    // Clear selection
                     document.querySelectorAll('.time-slot.selected').forEach(slot => {
                          slot.classList.remove('selected');
                     });
                     selectedTable = null;
                     selectedHours = [];
-                    // Refresh the time slots to show the new booking
+                    
+                    // Refresh the time slots
                     dateInput.dispatchEvent(new Event('change'));
                } else {
                     responseDiv.textContent = result.message || "Chyba pri odosielaní rezervácie";
