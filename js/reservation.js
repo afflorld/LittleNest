@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
           const formData = new URLSearchParams();
           formData.append('date', date);
 
-          const response = await fetch('https://script.google.com/macros/s/AKfycbz6WE828qWWfQYeH9uRjbXGZJ8mWEzR8RbGfvjjNcJrd531-vFwS1eVjpDT2KC-RlTK/exec', {
+          const response = await fetch('https://script.google.com/macros/s/AKfycbxMX8_vNqxUS_F2rzNn9c2SajZ4oc_2mzwTbKFHVrTD0H6Zhd-wGL9U5CYUkqHqaknX/exec', {
                method: 'POST',
                headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {
                formData.append('howlong', howlongInput.value);
                formData.append('chairs', chairsInput.value);
 
-               const scriptUrl = 'https://script.google.com/macros/s/AKfycbyHvHpLbw0QKDtOQJiykyzGmYlkDS41bqGhITWTZuyM03ac4Aj5hQarkfD6xifdP9rr/exec';
+               const scriptUrl = 'https://script.google.com/macros/s/AKfycbxDZ-bi3FiVqSlavld9P7cmG2p3xgDXFqrIVbao89drw8vfzClx1LAKspp9EExgfyUv/exec';
                const response = await fetch(scriptUrl, {
                     method: 'POST',
                     headers: {
