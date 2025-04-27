@@ -133,7 +133,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const data = await response.json();
 
                if (data.success) {
-                    console.log(data.bookedSlots);
                     renderTimeSlots(date, data.bookedSlots);
                } else {
                     console.error('Error fetching booked slots:', data.message);
