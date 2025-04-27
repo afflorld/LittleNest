@@ -1,6 +1,86 @@
+const dateInput = document.getElementById('date');
+
+// --- 1. Define Holidays ---
+function getSlovakHolidays(year) {
+     const fixedHolidays = [
+          `${year}-01-01`, // Nový rok
+          `${year}-01-06`, // Traja králi
+          `${year}-05-01`, // Sviatok práce
+          `${year}-05-08`, // Deň víťazstva
+          `${year}-07-05`, // Cyrila a Metoda
+          `${year}-08-29`, // Výročie SNP
+          `${year}-09-01`, // Deň Ústavy
+          `${year}-09-15`, // Sedembolestná Panna Mária
+          `${year}-11-01`, // Všetkých svätých
+          `${year}-11-17`, // Deň boja za slobodu
+          `${year}-12-24`, // Štedrý deň
+          `${year}-12-25`, // 1. vianočný sviatok
+          `${year}-12-26`, // 2. vianočný sviatok
+     ];
+
+     const a = year % 19;
+     const b = Math.floor(year / 100);
+     const c = year % 100;
+     const d = Math.floor(b / 4);
+     const e = b % 4;
+     const f = Math.floor((b + 8) / 25);
+     const g = Math.floor((b - f + 1) / 3);
+     const h = (19 * a + b - d - g + 15) % 30;
+     const i = Math.floor(c / 4);
+     const k = c % 4;
+     const l = (32 + 2 * e + 2 * i - h - k) % 7;
+     const m = Math.floor((a + 11 * h + 22 * l) / 451);
+     const month = Math.floor((h + l - 7 * m + 114) / 31);
+     const day = ((h + l - 7 * m + 114) % 31) + 1;
+
+     const easter = new Date(year, month - 1, day);
+     const goodFriday = new Date(easter);
+     goodFriday.setDate(easter.getDate() - 2); // Veľký piatk
+     const easterMonday = new Date(easter);
+     easterMonday.setDate(easter.getDate() + 1); // Veľkonočný pondelok
+
+     const variableHolidays = [
+          formatDate(goodFriday),
+          formatDate(easterMonday),
+     ];
+
+     return [...fixedHolidays, ...variableHolidays];
+}
+
+function formatDate(date) {
+     const d = new Date(date);
+     const year = d.getFullYear();
+     const month = String(d.getMonth() + 1).padStart(2, '0');
+     const day = String(d.getDate()).padStart(2, '0');
+     return `${year}-${month}-${day}`;
+}
+
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+const threeWeeksLater = new Date();
+threeWeeksLater.setDate(today.getDate() + 21);
+
+dateInput.min = formatDate(today);
+dateInput.max = formatDate(threeWeeksLater);
+
+dateInput.addEventListener('change', function() {
+     const selectedDate = new Date(this.value);
+     const dayOfWeek = selectedDate.getDay();
+     const holidays = getSlovakHolidays(selectedDate.getFullYear());
+
+     if (dayOfWeek === 0 || dayOfWeek === 6) {
+          alert("Vyberte si prosím pracovný deň (pondelok až piatok).");
+          this.value = '';
+     } else if (holidays.includes(formatDate(selectedDate))) {
+          alert("Tento deň je štátny sviatok. Vyberte iný dátum.");
+          this.value = '';
+     }
+});
+
 document.addEventListener('DOMContentLoaded', function() {
      const dateInput = document.getElementById('date');
      const phoneInput = document.getElementById('phone');
+     const mailInput = document.getElementById('email');
      const timeSlots = document.getElementById('timeSlots');
      const startHourInput = document.getElementById('startHour');
      const howlongInput = document.getElementById('howlong');
@@ -15,6 +95,11 @@ document.addEventListener('DOMContentLoaded', function() {
      phoneInput.addEventListener('input', function() {
           const phoneRegex = /^(\+421|0)[0-9]{9}$/;
           this.classList.toggle('is-invalid', this.value && !phoneRegex.test(this.value));
+     });
+
+     mailInput.addEventListener('input', function() {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          this.classList.toggle('is-invalid', this.value && !emailRegex.test(this.value));
      });
 
      dateInput.addEventListener('change', async function() {
@@ -32,11 +117,23 @@ document.addEventListener('DOMContentLoaded', function() {
           howlongInput.value = '1';
           tableInput.value = '';
 
-          try {
-               const response = await fetch(`https://script.google.com/macros/s/AKfycbxMX8_vNqxUS_F2rzNn9c2SajZ4oc_2mzwTbKFHVrTD0H6Zhd-wGL9U5CYUkqHqaknX/exec?date=${date}`);
-               const data = await response.json();
+          try{
+          const formData = new URLSearchParams();
+          formData.append('date', date);
+
+          const response = await fetch('https://script.google.com/macros/s/AKfycbz6WE828qWWfQYeH9uRjbXGZJ8mWEzR8RbGfvjjNcJrd531-vFwS1eVjpDT2KC-RlTK/exec', {
+               method: 'POST',
+               headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+               },
+               body: formData
+          });
+
+
+        const data = await response.json();
 
                if (data.success) {
+                    console.log(data.bookedSlots);
                     renderTimeSlots(date, data.bookedSlots);
                } else {
                     console.error('Error fetching booked slots:', data.message);
@@ -162,6 +259,14 @@ document.addEventListener('DOMContentLoaded', function() {
                return;
           }
 
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(mailInput.value)) {
+               responseDiv.textContent = "Prosím zadajte platnú emailovú adresu";
+               responseDiv.style.color = "red";
+               mailInput.focus();
+               return;
+          }
+
           // Validate time slot selection
           if (!selectedTable || selectedHours.length === 0) {
                responseDiv.textContent = "Prosím vyberte stôl a časový rozsah";
@@ -173,20 +278,26 @@ document.addEventListener('DOMContentLoaded', function() {
           responseDiv.style.color = "black";
 
           try {
-               const name = encodeURIComponent(document.getElementById('name').value);
-               const email = encodeURIComponent(document.getElementById('email').value);
-               const phone = encodeURIComponent(phoneInput.value);
-               const persons = encodeURIComponent(document.getElementById('persons').value);
-               const date = encodeURIComponent(document.getElementById('date').value);
-               const table = encodeURIComponent(selectedTable);
-               const startHour = encodeURIComponent(startHourInput.value);
-               const howlong = encodeURIComponent(howlongInput.value);
-               const chairs = encodeURIComponent(chairsInput.value);
-               
-               const scriptUrl = 'https://script.google.com/macros/s/AKfycbxDZ-bi3FiVqSlavld9P7cmG2p3xgDXFqrIVbao89drw8vfzClx1LAKspp9EExgfyUv/exec';
-               const url = `${scriptUrl}?name=${name}&date=${date}&startHour=${startHour}&howlong=${howlong}&table=${table}&chairs=${chairs}&persons=${persons}`;
+               const formData = new URLSearchParams();
+               formData.append('name', document.getElementById('name').value);
+               formData.append('mail', mailInput.value);
+               formData.append('phone', phoneInput.value);
+               formData.append('persons', document.getElementById('persons').value);
+               formData.append('date', document.getElementById('date').value);
+               formData.append('table', selectedTable);
+               formData.append('startHour', startHourInput.value);
+               formData.append('howlong', howlongInput.value);
+               formData.append('chairs', chairsInput.value);
 
-               const response = await fetch(url);
+               const scriptUrl = 'https://script.google.com/macros/s/AKfycbyHvHpLbw0QKDtOQJiykyzGmYlkDS41bqGhITWTZuyM03ac4Aj5hQarkfD6xifdP9rr/exec';
+               const response = await fetch(scriptUrl, {
+                    method: 'POST',
+                    headers: {
+                         'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: formData
+               });
+
                const result = await response.json();
 
                if (result.success) {
