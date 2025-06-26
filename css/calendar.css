@@ -209,7 +209,7 @@ body.visible .content-wrapper{
     }
 
     .Calendar-header span {
-        font-size: 0.9em !important;
+        font-size: 7px !important;
     }
 
     .Calendar-day-names {
@@ -218,7 +218,7 @@ body.visible .content-wrapper{
     }
 
     .Calendar-day-names .day-name {
-        font-size: 0.6em !important;
+        font-size: 5px !important;
     }
 
     .Calendar-grid {
@@ -230,12 +230,12 @@ body.visible .content-wrapper{
     }
 
     .Calendar-day .day-number {
-        font-size: 0.7em !important;
+        font-size: 5px !important;
 
     }
 
     .Calendar-day .day-name {
-        font-size: 0.7em !important;
+        font-size: 5px !important;
         opacity: 0.8 !important;
         margin-top: 2px !important; 
     }
@@ -263,7 +263,7 @@ body.visible .content-wrapper{
     }
 
     .Calendar-header span {
-        font-size: 0.9em !important;
+        font-size: 7px !important;
     }
 
     .Calendar-day-names {
@@ -272,7 +272,7 @@ body.visible .content-wrapper{
     }
 
     .Calendar-day-names .day-name {
-        font-size: 0.6em !important;
+        font-size: 4px !important;
     }
 
     .Calendar-grid {
@@ -284,12 +284,12 @@ body.visible .content-wrapper{
     }
 
     .Calendar-day .day-number {
-        font-size: 0.6em !important;
+        font-size: 4px !important;
 
     }
 
     .Calendar-day .day-name {
-        font-size: 0.58em !important;
+        font-size: 4px !important;
         opacity: 0.8 !important;
         margin-top: 2px !important;
     }
