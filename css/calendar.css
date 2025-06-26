@@ -191,56 +191,55 @@ body.visible .content-wrapper{
 
 @media (max-width: 768px) {
 
-.Calendar-table {
-    width: 300px;
-    padding: 10px; 
-    gap: 1px;
-}
+    .Calendar-table {
+        width: 300px !important;
+        padding: 10px !important;  
+        gap: 1px !important;
+    }
 
 
-.Calendar-header {
+    .Calendar-header {
 
-    padding: 0 5px;
-    color: #e75480;
+        padding: 0 5px !important;
 
-}
+    }
 
-.Calendar-header button {
-    padding: 3px 8px;
-}
+    .Calendar-header button {
+        padding: 3px 8px !important;
+    }
 
-.Calendar-header span {
-    font-size: 0.9em;
-}
+    .Calendar-header span {
+        font-size: 0.9em !important;
+    }
 
-.Calendar-day-names {
-    gap: 5px;
-    margin-bottom: 5px;
-}
+    .Calendar-day-names {
+        gap: 5px !important;
+        margin-bottom: 5px !important;
+    }
 
-.Calendar-day-names .day-name {
-    font-size: 0.6em;
-}
+    .Calendar-day-names .day-name {
+        font-size: 0.6em !important;
+    }
 
-.Calendar-grid {
-    gap: 5px;
-}
+    .Calendar-grid {
+        gap: 5px !important;
+    }
 
-.Calendar-day {
-    padding: 7px;
-}
+    .Calendar-day {
+        padding: 7px !important;
+    }
 
-.Calendar-day .day-number {
-    font-size: 0.7em;
+    .Calendar-day .day-number {
+        font-size: 0.7em !important;
 
-}
+    }
 
-.Calendar-day .day-name {
-    font-size: 0.7em;
-    opacity: 0.8;
-    margin-top: 2px;
-}
-  
+    .Calendar-day .day-name {
+        font-size: 0.7em !important;
+        opacity: 0.8 !important;
+        margin-top: 2px !important; 
+    }
+
 
 }
 
@@ -248,54 +247,52 @@ body.visible .content-wrapper{
 
 
     .Calendar-table {
-        width: 260px;
-        padding: 10px; 
-        gap: 1px;
+        width: 260px !important;
+        padding: 10px !important;  
+        gap: 1px !important;
     }
 
 
-.Calendar-header {
+    .Calendar-header {
 
-    padding: 0 5px;
-    color: #e75480;
+        padding: 0 5px !important;
+    }
 
-}
+    .Calendar-header button {
+        padding: 1px 5px !important;
+    }
 
-.Calendar-header button {
-    padding: 1px 5px;
-}
+    .Calendar-header span {
+        font-size: 0.9em !important;
+    }
 
-.Calendar-header span {
-    font-size: 0.9em;
-}
+    .Calendar-day-names {
+        gap: 5px !important;
+        margin-bottom: 5px !important;
+    }
 
-.Calendar-day-names {
-    gap: 5px;
-    margin-bottom: 5px;
-}
+    .Calendar-day-names .day-name {
+        font-size: 0.6em !important;
+    }
 
-.Calendar-day-names .day-name {
-    font-size: 0.6em;
-}
+    .Calendar-grid {
+        gap: 4px !important;
+    }
 
-.Calendar-grid {
-    gap: 4px;
-}
+    .Calendar-day {
+        padding: 8px !important;
+    }
 
-.Calendar-day {
-    padding: 8px;
-}
+    .Calendar-day .day-number {
+        font-size: 0.6em !important;
 
-.Calendar-day .day-number {
-    font-size: 0.6em;
+    }
 
-}
-
-.Calendar-day .day-name {
-    font-size: 0.58em;
-    opacity: 0.8;
-    margin-top: 2px;
-}
+    .Calendar-day .day-name {
+        font-size: 0.58em !important;
+        opacity: 0.8 !important;
+        margin-top: 2px !important;
+    }
 
 }
 

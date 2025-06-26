@@ -8,10 +8,8 @@ document.getElementById('contact_form').addEventListener('submit', function(e) {
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<span>Odosielanie...</span>';
 
- grecaptcha.ready(function() {
-    grecaptcha.execute('6Lfxq24rAAAAADfe75STwdPZYbbMj2tb5goP141o', { action: 'submit' }).then(function(token) {
-      const formData = new FormData(form);
-      formData.append('token', token);
+    const formData = new FormData(form);
+
 
     fetch(form.action, {
         method: 'POST',
@@ -34,6 +32,4 @@ document.getElementById('contact_form').addEventListener('submit', function(e) {
             submitBtn.disabled = false;
             submitBtn.innerHTML = '<span>Odoslať správu</span>';
         });
-    }); 
- });
-});
+    });
