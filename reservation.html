@@ -12,9 +12,10 @@
           <link rel="stylesheet" href="css/splitting.css">
           <link rel="stylesheet" href="css/demo-fancy/demo-fancy.css">
           <link rel="stylesheet" href="css/reservation.css">
+          <link rel="stylesheet" href="css/calendar.css">
      </head>
      <body class="bg-gradient-gray-light-1" style="height: 100%;">
-          <section class="page-section bg-scroll" style="display:grid;justify-items:center;">
+          <section class="page-section bg-scroll content-wrapper" style="display:grid;justify-items:center;">
                <div class="container position-relative wow fadeInUp" data-wow-delay="0"> 
                     <div style="display:grid; justify-content: center;">
                          <div class="position-relative bg-white">
@@ -44,12 +45,16 @@
                                                   </div>
                                              </div>
                                         </div>
-
-                                        <div class="form-group" style="display:grid;">
-                                             <label for="date" style="justify-self:center">Dátum</label>
-                                             <input type="date" name="date" id="date" class="form-control input-lg round" required>
+                                        <label for="dateInput">Datum</label>
+                                        <div class="CalendarForm">
+                                            <div class="Calendar-value">
+                                                <p class="value">Vyberte datum</p>
+                                                <input type="date" id="dateInput" style="display:none";>
+                                            </div>
+                                            <button type="button" class="Calendar-choose" aria-label="Choose date">
+                                                <img src="src/images/calendar.jpg" alt="" width="24" height="24" />
+                                            </button>
                                         </div>
-
                                         <div class="time-slots-container">
                                              <h5 class="text-center mb-3">Dostupné časy</h5>
                                              <div class="time-slots" id="timeSlots">
@@ -99,6 +104,9 @@
                     </div>
                </div>
           </section>
+
+          <div class="Calendar-table" role="dialog" aria-labelledby="calendar-title" aria-modal="true" aria-hidden="true"></div>
+
           <!-- JS -->
           <script src="js/reservation.js"></script>
           <script src="js/jquery.min.js"></script>
@@ -106,6 +114,6 @@
           <script src="js/plugins.js"></script>
           <script src="js/jquery.ajaxchimp.min.js"></script>             
           <script src="js/all.js"></script>
-
+          <script src="js/calendar.js"></script>
      </body>
 </html>
