@@ -267,7 +267,7 @@ body.visible .content-wrapper{
     }
 
     .Calendar-day-names {
-        gap: 5px !important;
+        gap: 4px !important;
         margin-bottom: 5px !important;
     }
 
@@ -276,11 +276,11 @@ body.visible .content-wrapper{
     }
 
     .Calendar-grid {
-        gap: 5px !important;
+        gap: 4px !important;
     }
 
     .Calendar-day {
-        padding: 5px !important;
+        padding: 2px !important;
     }
 
     .Calendar-day .day-number {
