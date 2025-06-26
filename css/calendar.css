@@ -280,7 +280,7 @@ body.visible .content-wrapper{
     }
 
     .Calendar-day {
-        padding: 8px !important;
+        padding: 5px !important;
     }
 
     .Calendar-day .day-number {
