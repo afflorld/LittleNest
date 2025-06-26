@@ -209,7 +209,7 @@ body.visible .content-wrapper{
     }
 
     .Calendar-header span {
-        font-size: 7px !important;
+        font-size: 10px !important;
     }
 
     .Calendar-day-names {
@@ -218,7 +218,7 @@ body.visible .content-wrapper{
     }
 
     .Calendar-day-names .day-name {
-        font-size: 5px !important;
+        font-size: 10px !important;
     }
 
     .Calendar-grid {
@@ -226,18 +226,17 @@ body.visible .content-wrapper{
     }
 
     .Calendar-day {
-        padding: 7px !important;
+        padding: 4px !important;
     }
 
     .Calendar-day .day-number {
-        font-size: 5px !important;
+        font-size: 10px !important;
 
     }
 
     .Calendar-day .day-name {
-        font-size: 5px !important;
-        opacity: 0.8 !important;
-        margin-top: 2px !important; 
+        font-size: 10px !important;
+      
     }
 
 
@@ -290,8 +289,7 @@ body.visible .content-wrapper{
 
     .Calendar-day .day-name {
         font-size: 7px !important;
-        opacity: 0.8 !important;
-        margin-top: 2px !important;
+     
     }
 
 }
