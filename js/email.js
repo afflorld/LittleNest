@@ -5,11 +5,20 @@ document.getElementById('contact_form').addEventListener('submit', function(e) {
     const submitBtn = document.getElementById('submit_btn');
     const resultDiv = document.getElementById('result');
 
+    const reCaptchaResponse = grecaptcha.getResponse();
+    if (!reCaptchaResponse) {
+        resultDiv.innerHTML = '<div class="alert alert-danger">Prosím, potvrďte, že nie ste robot.</div>';
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>Odoslať správu</span>';
+        return;
+    }
+
+    const formData = new FormData(form);
+ 
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<span>Odosielanie...</span>';
 
-    const formData = new FormData(form);
-
+    formData.append('g-recaptcha-response', reCaptchaResponse);
 
     fetch(form.action, {
         method: 'POST',
