@@ -206,16 +206,17 @@ document.addEventListener('DOMContentLoaded', function() {
           responseDiv.style.color = "black";
 
           try {
-               const formData = new URLSearchParams();
-               formData.append('name', document.getElementById('name').value);
-               formData.append('mail', mailInput.value);
-               formData.append('phone', phoneInput.value);
-               formData.append('persons', document.getElementById('persons').value);
-               formData.append('date', document.getElementById('dateInput').value);
-               formData.append('table', selectedTable);
-               formData.append('startHour', startHourInput.value);
-               formData.append('howlong', howlongInput.value);
-               formData.append('chairs', chairsInput.value);
+              const formData = new URLSearchParams();
+              formData.append('name', document.getElementById('name').value);
+              formData.append('mail', mailInput.value);
+              formData.append('phone', phoneInput.value);
+              formData.append('persons', document.getElementById('persons').value);
+              formData.append('date', document.getElementById('dateInput').value);
+              formData.append('table', selectedTable);
+              formData.append('startHour', startHourInput.value);
+              formData.append('howlong', howlongInput.value);
+              formData.append('chairs', chairsInput.value);
+              formData.append('note', document.getElementById('message').value);
 
                const scriptUrl = 'https://script.google.com/macros/s/AKfycbxDZ-bi3FiVqSlavld9P7cmG2p3xgDXFqrIVbao89drw8vfzClx1LAKspp9EExgfyUv/exec';
                const response = await fetch(scriptUrl, {
